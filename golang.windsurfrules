@@ -1,0 +1,179 @@
+<golang_best_practices>
+
+<code_organization>
+- 使用包結構反映業務領域或功能邊界
+- 將相關功能分組到同一個包中
+- 保持包的單一職責
+- 使用 internal/ 目錄限制包的可見性
+- 使用 cmd/ 目錄存放主要應用入口點
+- 使用 pkg/ 目錄存放可被外部導入的庫代碼
+- 避免循環依賴
+- 使用 go.mod 和 go.sum 進行依賴管理
+</code_organization>
+
+<naming_conventions>
+- 使用 camelCase 命名變量和函數
+- 使用 PascalCase 命名導出的函數、類型和變量
+- 使用簡短但有描述性的名稱
+- 使用縮寫時保持一致性（如 HTTP 而不是 Http）
+- 避免使用下劃線命名法
+- 使用動詞開頭命名函數（如 GetUser 而不是 User）
+- 接口名稱通常應以 -er 結尾（如 Reader, Writer）
+- 避免在包外使用時造成重複（如 pkg.PkgMethod）
+</naming_conventions>
+
+<error_handling>
+- 使用多返回值處理錯誤（值, err := function()）
+- 檢查並處理每個錯誤
+- 避免使用 _ 忽略錯誤
+- 使用自定義錯誤類型提供更多上下文
+- 使用 fmt.Errorf 和 %w 包裝錯誤
+- 使用 errors.Is 和 errors.As 檢查和轉換錯誤
+- 在錯誤消息中包含足夠的上下文
+- 在適當的抽象層次處理錯誤
+</error_handling>
+
+<concurrency>
+- 使用 goroutines 進行並發處理
+- 使用通道（channels）進行 goroutines 間通信
+- 遵循"通過通信共享內存，而不是通過共享內存通信"的原則
+- 使用 sync.WaitGroup 等待 goroutines 完成
+- 使用 select 處理多個通道操作
+- 使用 context 包管理取消和超時
+- 使用 sync.Mutex 和 sync.RWMutex 保護共享資源
+- 避免 goroutine 洩漏
+</concurrency>
+
+<interfaces>
+- 保持接口小巧，通常只有一到三個方法
+- 在使用者而不是實現者的包中定義接口
+- 使用接口作為函數參數提高靈活性
+- 避免導出接口的具體實現
+- 使用嵌入接口組合更大的接口
+- 使用空接口 interface{} 或 any 謹慎處理未知類型
+- 實現常用接口如 io.Reader, io.Writer, fmt.Stringer
+- 使用類型斷言或類型切換處理接口值
+</interfaces>
+
+<structs_and_methods>
+- 通過值接收者或指針接收者保持方法集一致性
+- 使用嵌入結構體實現組合
+- 將相關字段分組在嵌套結構體中
+- 使用標籤提供元數據（如用於 JSON 序列化）
+- 初始化結構體時使用字段名稱
+- 導出需要外部訪問的字段，使用首字母大寫
+- 使用構造函數（NewXxx）創建複雜結構體
+- 使用指針接收者修改結構體狀態
+</structs_and_methods>
+
+<performance>
+- 使用 sync.Pool 重用臨時對象
+- 避免不必要的內存分配
+- 使用 strings.Builder 連接字符串
+- 預分配切片容量（make([]Type, 0, capacity)）
+- 使用 pprof 分析性能瓶頸
+- 使用基準測試評估性能改進
+- 考慮使用 sync.Map 處理並發訪問的映射
+- 使用 strconv 包代替 fmt 進行基本類型轉換
+</performance>
+
+<testing>
+- 使用表驅動測試處理多個測試用例
+- 使用 t.Parallel() 並行運行獨立測試
+- 使用 testify 等庫簡化斷言
+- 編寫單元測試和集成測試
+- 使用 httptest 包測試 HTTP 處理程序
+- 使用 gomock 或 testify/mock 創建模擬對象
+- 使用測試覆蓋率工具確保足夠的測試覆蓋率
+- 使用 go test -race 檢測數據競爭
+</testing>
+
+<documentation>
+- 為每個導出的函數、類型和變量編寫文檔註釋
+- 使用完整句子描述函數功能
+- 包含使用示例
+- 使用 godoc 格式編寫文檔
+- 為包提供概述文檔（在 doc.go 或包聲明前）
+- 包含預期的錯誤和邊緣情況處理
+- 使用 go doc 和 godoc 查看和生成文檔
+- 為複雜算法和設計決策添加註釋
+</documentation>
+
+<dependency_management>
+- 使用 Go 模塊（go.mod）管理依賴
+- 明確指定依賴版本
+- 定期更新依賴解決安全問題
+- 使用 go mod tidy 清理未使用的依賴
+- 考慮使用 vendor/ 目錄確保構建一致性
+- 最小化外部依賴數量
+- 使用 go.sum 驗證依賴完整性
+- 使用 GOPROXY 加速依賴下載
+</dependency_management>
+
+<error_values>
+- 使用 var ErrXxx = errors.New("description") 定義包級錯誤變量
+- 使用 errors.Is() 比較錯誤值
+- 使用 errors.As() 提取自定義錯誤類型
+- 實現 Error() 方法自定義錯誤類型
+- 使用 fmt.Errorf("context: %w", err) 包裝錯誤
+- 避免使用 panic 處理常規錯誤
+- 使用 recover() 處理 panic
+- 在錯誤消息中使用句子格式（首字母小寫，不以標點結束）
+</error_values>
+
+<tooling>
+- 使用 gofmt 或 goimports 自動格式化代碼
+- 使用 golint 檢查代碼風格
+- 使用 go vet 檢測常見錯誤
+- 使用 staticcheck 進行靜態代碼分析
+- 使用 errcheck 確保錯誤處理
+- 使用 go test -race 檢測數據競爭
+- 使用 go test -cover 測量代碼覆蓋率
+- 配置 CI/CD 管道自動運行測試和檢查
+</tooling>
+
+<project_layout>
+- 遵循標準項目布局
+- 使用 /cmd 目錄存放主要應用程序
+- 使用 /pkg 目錄存放庫代碼
+- 使用 /internal 目錄存放私有應用和庫代碼
+- 使用 /api 目錄存放 API 定義
+- 使用 /web 目錄存放 Web 應用組件
+- 使用 /configs 目錄存放配置文件模板
+- 使用 /scripts 目錄存放腳本
+</project_layout>
+
+<api_design>
+- 使用版本化 API 路徑（如 /api/v1/resource）
+- 使用 RESTful 設計原則
+- 使用一致的錯誤響應格式
+- 實現適當的狀態碼使用
+- 使用 JSON 標籤控制字段序列化
+- 提供 API 文檔（使用 Swagger/OpenAPI）
+- 實現分頁和過濾機制
+- 使用 context.Context 處理請求範圍值和取消
+</api_design>
+
+<configuration>
+- 使用環境變量進行配置
+- 使用配置文件作為備選
+- 提供合理的默認值
+- 驗證配置值
+- 支持不同環境的配置（開發、測試、生產）
+- 使用 viper 等庫處理複雜配置
+- 避免硬編碼配置值
+- 將敏感配置與應用代碼分離
+</configuration>
+
+<logging>
+- 使用結構化日誌（如 zap 或 logrus）
+- 包含足夠的上下文信息
+- 使用適當的日誌級別（Debug, Info, Warn, Error）
+- 避免在正常操作中使用 Fatal 或 Panic 級別
+- 實現可配置的日誌級別
+- 包含請求 ID 進行分佈式追踪
+- 避免記錄敏感信息
+- 考慮日誌輪轉和保留策略
+</logging>
+
+</golang_best_practices>
