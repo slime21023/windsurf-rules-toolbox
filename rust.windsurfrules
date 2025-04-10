@@ -1,0 +1,124 @@
+<rust_best_practices>
+
+<code_organization>
+- 使用模塊系統組織代碼，每個模塊專注於單一功能
+- 遵循標準庫的命名約定（snake_case 用於變量和函數，CamelCase 用於類型）
+- 使用 pub(crate) 和 pub(super) 限制可見性範圍
+- 將相關功能分組到同一模塊中
+- 使用 lib.rs 導出公共 API
+- 使用 prelude 模塊重新導出常用項
+- 使用工作空間組織多包項目
+- 將二進制和庫代碼分離
+</code_organization>
+
+<error_handling>
+- 使用 Result<T, E> 類型處理可恢復錯誤
+- 使用 ? 運算符傳播錯誤
+- 實現 std::error::Error trait 自定義錯誤類型
+- 使用 thiserror 或 anyhow 簡化錯誤處理
+- 避免使用 unwrap() 和 expect() 在生產代碼中
+- 使用 panic! 處理不可恢復的錯誤
+- 提供有意義的錯誤消息
+- 使用 Result 組合器（map, and_then, or_else）處理錯誤
+</error_handling>
+
+<memory_management>
+- 優先使用所有權和借用而不是引用計數
+- 使用生命周期註解明確表達借用關係
+- 使用 Clone 和 Copy traits 明確表達值語義
+- 避免過早優化，讓編譯器優化內存佈局
+- 使用 Box<T> 處理大型數據結構或遞歸類型
+- 使用 Rc<T> 和 Arc<T> 共享所有權
+- 使用 Cell<T> 和 RefCell<T> 在需要時實現內部可變性
+- 考慮使用自定義分配器優化特定場景
+</memory_management>
+
+<concurrency>
+- 使用 Rust 的所有權系統防止數據競爭
+- 使用 std::thread 進行線程級並行
+- 使用 std::sync 原語（Mutex, RwLock, Arc）進行線程間通信
+- 使用通道（mpsc, crossbeam, tokio::sync::mpsc）進行消息傳遞
+- 考慮使用 Rayon 進行數據並行處理
+- 使用 async/await 和 Future 進行非阻塞 IO
+- 選擇適合用例的異步運行時（tokio, async-std, smol）
+- 避免在關鍵路徑上使用鎖
+</concurrency>
+
+<performance>
+- 使用 #[inline] 和 #[inline(always)] 提示編譯器內聯函數
+- 使用 const 泛型和 const fn 進行編譯時計算
+- 考慮使用 SIMD 指令進行數據並行處理
+- 使用 criterion 進行基準測試
+- 避免不必要的內存分配和拷貝
+- 使用迭代器組合而不是顯式循環
+- 使用 Vec::with_capacity 預分配內存
+- 使用 perf 或 flamegraph 進行性能分析
+</performance>
+
+<testing>
+- 編寫單元測試驗證函數行為
+- 使用 #[test] 屬性標記測試函數
+- 使用 #[should_panic] 測試預期的恐慌
+- 編寫集成測試驗證模塊交互
+- 使用 proptest 或 quickcheck 進行屬性測試
+- 使用 #[cfg(test)] 標記僅用於測試的代碼
+- 使用 cargo test 運行測試套件
+- 使用 cargo-nextest 加速測試執行
+</testing>
+
+<api_design>
+- 遵循 Rust API 指南原則
+- 使用 trait 定義行為接口
+- 實現標準庫 traits（Display, Debug, Clone 等）
+- 使用泛型提高代碼重用性
+- 使用 From/Into/TryFrom/TryInto 進行類型轉換
+- 使用 builder 模式構建複雜對象
+- 提供明確的錯誤類型和消息
+- 使用文檔注釋記錄公共 API
+</api_design>
+
+<cargo_and_dependencies>
+- 明確指定依賴版本範圍
+- 定期更新依賴解決安全問題
+- 使用 cargo audit 檢查安全漏洞
+- 使用 cargo clippy 進行靜態分析
+- 使用 cargo fmt 保持一致的代碼風格
+- 使用特性標誌控制可選功能
+- 最小化依賴樹大小
+- 使用工作空間共享依賴
+</cargo_and_dependencies>
+
+<unsafe_code>
+- 盡量避免使用 unsafe 代碼
+- 清晰記錄所有 unsafe 代碼塊的安全不變量
+- 使用 unsafe 封裝不安全操作為安全接口
+- 在使用 unsafe 前考慮安全替代方案
+- 使用 miri 檢測 unsafe 代碼中的未定義行為
+- 遵循 Rust 的 unsafe 指南
+- 維護明確的抽象邊界
+- 為 unsafe 代碼編寫詳細的測試
+</unsafe_code>
+
+<documentation>
+- 為所有公共 API 編寫文檔注釋
+- 包含使用示例
+- 使用 cargo doc 生成文檔
+- 遵循 Rustdoc 約定
+- 記錄函數的前置條件和後置條件
+- 使用 rust-skeptic 測試文檔中的代碼示例
+- 提供模塊級別的文檔解釋整體設計
+- 使用交叉引用連接相關項
+</documentation>
+
+<tooling>
+- 使用 rustfmt 保持一致的代碼風格
+- 使用 clippy 捕獲常見錯誤和非慣用代碼
+- 使用 rust-analyzer 提高 IDE 支持
+- 配置 CI/CD 管道自動運行測試和檢查
+- 使用 cargo expand 檢查宏展開
+- 使用 cargo bloat 分析二進制大小
+- 使用 RUSTFLAGS 啟用額外的編譯器檢查
+- 使用 cargo-udeps 檢測未使用的依賴
+</tooling>
+
+</rust_best_practices>

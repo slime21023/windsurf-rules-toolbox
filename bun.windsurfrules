@@ -1,0 +1,113 @@
+<bun_best_practices>
+
+<project_setup>
+- 使用 `bun init` 初始化新項目，確保正確設置 package.json
+- 在 package.json 中指定 "type": "module" 使用 ES 模塊
+- 使用 .env 文件和 Bun.env 管理環境變量
+- 利用 bun.lockb 鎖文件確保依賴一致性
+- 配置 tsconfig.json 啟用嚴格類型檢查
+- 使用 .bunignore 文件排除不需要的文件
+- 在 package.json 中設置 "engines" 字段指定 Bun 版本要求
+- 使用 workspaces 管理多包項目
+</project_setup>
+
+<performance>
+- 使用 Bun.serve() 替代 Node.js HTTP 服務器獲得更好性能
+- 利用 Bun.file API 進行高效文件操作
+- 使用 Bun.write 替代 fs.writeFile 提高寫入性能
+- 利用 Bun 的 FFI API 與 C 庫集成而不是使用 Node 原生模塊
+- 使用 ArrayBuffer 和 TypedArrays 處理二進制數據
+- 使用 Bun.nanoseconds() 進行高精度性能測量
+- 使用 Bun.password 進行高效的密碼哈希處理
+- 利用 Bun 的 HTTP 客戶端替代 fetch 或 axios 獲得更好性能
+</performance>
+
+<dependency_management>
+- 使用 `bun install` 快速安裝依賴
+- 定期運行 `bun update` 更新依賴
+- 使用 `bun pm cache rm` 清理包緩存
+- 使用 `bun add -d` 添加開發依賴
+- 使用 peer dependencies 處理共享依賴
+- 利用 Bun 的內置依賴解析加速啟動時間
+- 使用 Bun 的 --production 標誌排除開發依賴
+- 使用 `bun pm ls` 檢查已安裝的依賴
+</dependency_management>
+
+<testing>
+- 使用 Bun 的內置測試運行器替代 Jest 或 Mocha
+- 使用 `bun test` 運行測試套件
+- 利用 Bun 的 mock 功能模擬模塊和函數
+- 使用 `bun test --coverage` 生成覆蓋率報告
+- 使用 `bun test --watch` 在開發模式下持續運行測試
+- 使用 `bun test --timeout` 設置測試超時
+- 使用 expect API 進行斷言
+- 組織測試文件使用 .test.ts 或 .spec.ts 后綴
+</testing>
+
+<bundling>
+- 使用 `bun build` 替代 webpack 或 esbuild 打包應用
+- 利用 Bun 的 --minify 標誌減小輸出大小
+- 使用 --outdir 指定輸出目錄
+- 使用 --target 指定目標環境
+- 利用 Bun 的樹搖優化移除未使用的代碼
+- 使用 --external 排除特定依賴
+- 使用 --splitting 啟用代碼分割
+- 配置 --define 設置編譯時常量
+</bundling>
+
+<development>
+- 使用 `bun --hot` 啟用熱模塊替換
+- 使用 Bun 的 --watch 標誌自動重啟服務器
+- 利用 Bun.inspect() 調試複雜對象
+- 使用 Bun.serve 的 development 選項啟用開發模式
+- 使用 console.time() 和 console.timeEnd() 測量性能
+- 利用 Bun.plugin API 擴展功能
+- 使用 Bun.gc() 在需要時手動觸發垃圾回收
+- 使用 Bun 的 --smol 標誌減少內存使用
+</development>
+
+<typescript_integration>
+- 利用 Bun 的內置 TypeScript 支持無需額外配置
+- 使用 .ts 和 .tsx 文件而不需要顯式編譯步驟
+- 配置 tsconfig.json 使用嚴格模式提高代碼質量
+- 使用 JSX 自動轉換功能
+- 利用 Bun 的類型檢查 API 進行編程式類型驗證
+- 使用 import type 語法僅導入類型
+- 使用泛型提高代碼重用性和類型安全性
+- 使用 interface 和 type 定義清晰的 API 契約
+</typescript_integration>
+
+<deployment>
+- 使用 Docker 多階段構建減小容器大小
+- 利用 Bun 的低內存占用優化容器資源
+- 使用 `bun build` 創建生產優化的包
+- 配置健康檢查端點監控應用狀態
+- 實施優雅關閉處理 SIGTERM 信號
+- 使用環境變量配置生產設置
+- 實現適當的日誌級別和格式
+- 考慮使用 PM2 或類似工具進行進程管理
+</deployment>
+
+<security>
+- 使用 Bun.password 進行安全的密碼哈希和驗證
+- 定期更新依賴解決安全漏洞
+- 使用 Content-Security-Policy 頭部防止 XSS 攻擊
+- 實施適當的 CORS 策略
+- 使用 HTTPS 加密傳輸
+- 驗證和清理用戶輸入
+- 使用環境變量存儲敏感信息
+- 實施速率限制防止暴力攻擊
+</security>
+
+<database>
+- 使用參數化查詢防止 SQL 注入
+- 實施連接池優化數據庫性能
+- 使用事務確保數據一致性
+- 實現適當的錯誤處理和重試邏輯
+- 使用 ORM 或查詢構建器提高生產力
+- 實施數據庫遷移策略
+- 使用索引優化查詢性能
+- 考慮使用 Bun 的 SQLite 集成進行輕量級數據存儲
+</database>
+
+</bun_best_practices>

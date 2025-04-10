@@ -1,0 +1,113 @@
+<web_development_standards>
+
+<html_structure>
+- 使用 HTML5 文檔類型聲明 <!DOCTYPE html>
+- 使用語義化 HTML 元素（header, nav, main, section, article, footer）
+- 包含適當的 meta 標籤（viewport, description, charset）
+- 使用結構化數據標記增強 SEO
+- 保持標記簡潔，避免不必要的嵌套
+- 使用 lang 屬性指定頁面語言
+- 使用有意義的 alt 文本描述圖像
+- 使用 HTML 驗證工具檢查標記有效性
+</html_structure>
+
+<responsive_design>
+- 使用移動優先的響應式設計方法
+- 實施流體網格系統
+- 使用媒體查詢適應不同屏幕尺寸
+- 使用相對單位（rem, em, %）而不是絕對單位（px）
+- 優化觸摸目標大小（至少 44x44 像素）
+- 測試各種設備和屏幕尺寸
+- 使用 picture 元素和 srcset 屬性提供響應式圖像
+- 考慮使用 CSS Grid 和 Flexbox 進行佈局
+</responsive_design>
+
+<performance>
+- 最小化和壓縮 CSS、JavaScript 和 HTML
+- 優化和壓縮圖像
+- 使用適當的圖像格式（WebP, AVIF）
+- 實施懶加載非關鍵資源
+- 使用瀏覽器緩存策略
+- 減少 HTTP 請求數量
+- 使用內容分發網絡（CDN）
+- 實施關鍵 CSS 內聯
+</performance>
+
+<accessibility>
+- 遵循 WCAG 2.1 AA 級標準
+- 使用適當的 ARIA 角色和屬性
+- 確保鍵盤導航功能
+- 提供足夠的顏色對比度
+- 實施跳過導航鏈接
+- 使用適當的表單標籤
+- 提供替代文本和說明
+- 使用可訪問性測試工具評估合規性
+</accessibility>
+
+<seo>
+- 使用描述性頁面標題
+- 實施規範 URL
+- 創建 XML 站點地圖
+- 使用語義化 HTML 結構
+- 優化頁面加載速度
+- 實施結構化數據標記
+- 確保移動友好性
+- 使用描述性 URL 結構
+</seo>
+
+<security>
+- 實施 HTTPS
+- 使用內容安全策略（CSP）
+- 防止跨站腳本（XSS）攻擊
+- 防止跨站請求偽造（CSRF）
+- 使用安全 cookie 設置（Secure, HttpOnly, SameSite）
+- 實施適當的 CORS 策略
+- 驗證和清理用戶輸入
+- 定期更新依賴項解決安全漏洞
+</security>
+
+<cross_browser_compatibility>
+- 測試主要瀏覽器（Chrome, Firefox, Safari, Edge）
+- 使用特性檢測而不是瀏覽器檢測
+- 提供適當的後備方案
+- 使用 autoprefixer 添加供應商前綴
+- 測試不同操作系統
+- 考慮舊版瀏覽器的優雅降級
+- 使用 caniuse.com 檢查特性支持
+- 實施漸進增強策略
+</cross_browser_compatibility>
+
+<code_quality>
+- 遵循一致的代碼風格指南
+- 使用靜態代碼分析工具
+- 實施代碼審查流程
+- 使用版本控制系統
+- 編寫自動化測試
+- 使用模塊化方法組織代碼
+- 避免全局變量和函數
+- 定期重構代碼
+</code_quality>
+
+<asset_management>
+- 使用適當的文件命名約定
+- 組織資源到邏輯目錄結構
+- 使用版本控制管理資源
+- 優化媒體文件大小
+- 使用 SVG 代替光柵圖像（在可能的情況下）
+- 實施資源緩存策略
+- 使用字體子集減小字體文件大小
+- 考慮使用圖像 CDN 服務
+</asset_management>
+
+<user_experience>
+- 優先考慮頁面加載速度
+- 實施漸進式加載策略
+- 提供清晰的導航和信息結構
+- 設計一致的交互模式
+- 提供有意義的錯誤消息和反饋
+- 優化表單設計和驗證
+- 考慮離線體驗和 PWA 功能
+- 實施適當的動畫和過渡
+</user_experience>
+
+</web_development_standards>
