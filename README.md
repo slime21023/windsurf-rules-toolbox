@@ -11,6 +11,7 @@
 - Python 程式設計
 - 軟體工程實踐
 - Bun.js 開發
+- Golang 開發
 
 每個規則集都按照類別進行組織，方便您快速找到與專案相關的資訊。
 
@@ -32,3 +33,6 @@
 
 - **[bun.windsurfrules](bun.windsurfrules)**  
   Bun.js 開發的最佳實踐，包括專案設置、效能、依賴管理、測試、打包、TypeScript 整合和部署。
+
+- **[golang.windsurfrules](golang.windsurfrules)**  
+  Golang 開發的最佳實踐，包括程式碼風格、程式碼組織、效能、測試、依賴管理、打包和部署。
